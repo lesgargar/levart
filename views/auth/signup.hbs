@@ -1,10 +1,27 @@
+<div class="container">
 <div id="form">
   <h2>Sign Up</h2>
   <form action="/auth/signup" method="POST">
 
-    <label> Username
-      <input type="text" name="username" placeholder="Your username" />
+    <label> Name
+      <input type="text" name="name" placeholder="Your Name" />
     </label>
+
+    <label>Last Name
+      <input type="text" name="lastName" placeholder="Your Last Name" />
+    </label>
+
+    <label> Username
+      <input type="text" name="userName" placeholder="Your username" />
+    </label>
+
+    <label> City
+      <input type="text" name="city" placeholder="Your City" />
+    </label>   
+
+    <label> Age
+      <input type="date" name="age" placeholder="Your Age" />
+    </label> 
 
     <label> Email
       <input type="email" name="email" placeholder="Your email" />
@@ -14,11 +31,12 @@
       <input type="password" name="password" placeholder="Your password" />
     </label>
 
-    <button type="submit">Sign Up</button>
+    <button class="btn red darken-2" type="submit">Sign Up</button>
 
 
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
     {{/if}}
   </form>
+</div>
 </div>

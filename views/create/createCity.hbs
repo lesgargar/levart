@@ -1,0 +1,23 @@
+<div class="container">
+<div id="form">
+  <h2>Register City</h2>
+  <form action="/auth/createCity" method="POST">
+
+    <label> Name
+      <input type="text" name="name" placeholder="City's name" />
+    </label>
+
+    <label>Location 
+      <input type="text" name="lastName" placeholder="Your Last Name" />
+    </label>
+
+    
+    <button class="btn red darken-2" type="submit">Sign Up</button>
+
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>
+</div>

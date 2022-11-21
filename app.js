@@ -19,9 +19,11 @@ const app = express();
 require("./config")(app);
 
 const capitalize = require("./utils/capitalize");
-const projectName = "Levart";
+const projectName = "levart";
 
 app.locals.appTitle = `${capitalize(projectName)} `;
+
+hbs.registerPartials(__dirname + "/views/partials");
 
 // 👇 Start handling routes here
 const indexRoutes = require("./routes/index.routes");
