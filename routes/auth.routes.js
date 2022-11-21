@@ -22,10 +22,10 @@ router.get("/signup", isLoggedOut, (req, res) => {
 
 // POST /auth/signup
 router.post("/signup", isLoggedOut, (req, res) => {
-  const { name, lastName, userName, city, age, email, password } = req.body;
+  const { name, lastName, username, city, age, email, password } = req.body;
   console.log(req.body);
   // Check that username, email, and password are provided
-  if (userName === "" || email === "" || password === "") {
+  if (username === "" || email === "" || password === "") {
     res.status(400).render("auth/signup", {
       errorMessage:
         "All fields are mandatory. Please provide your username, email and password.",
@@ -63,7 +63,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
       // Create a user and save it in the database
       return User.create({name, 
         lastName, 
-        userName, 
+        username, 
         city, 
         age, 
         email, 
@@ -73,6 +73,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
       res.redirect("/auth/login");
     })
     .catch((error) => {
+      console.log("error",error);
       if (error instanceof mongoose.Error.ValidationError) {
         res.status(500).render("auth/signup", { errorMessage: error.message });
       } else if (error.code === 11000) {
