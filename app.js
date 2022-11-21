@@ -23,6 +23,8 @@ const projectName = "Levart";
 
 app.locals.appTitle = `${capitalize(projectName)} `;
 
+hbs.registerPartials(__dirname + "/views/partials");
+
 // 👇 Start handling routes here
 const indexRoutes = require("./routes/index.routes");
 app.use("/", indexRoutes);

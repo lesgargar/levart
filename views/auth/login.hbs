@@ -1,9 +1,10 @@
+<div class="container">
 <div id="login-form">
   <h2>Log In</h2>
   <form action="/auth/login" method="POST">
 
     <label> Username
-      <input type="text" name="username" placeholder="Your username" />
+      <input type="text" name="userName" placeholder="Your username" />
     </label>
 
     <label> Email
@@ -14,11 +15,12 @@
       <input type="password" name="password" placeholder="Your password" />
     </label>
 
-    <button type="submit">Log In</button>
+    <button class="btn red darken-2" type="submit">Log In</button>
 
 
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
     {{/if}}
   </form>
+</div>
 </div>

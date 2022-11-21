@@ -5,7 +5,7 @@ const mementoSchema = new Schema(
     name:String,
     description:{
         type:String,
-        required: true ,
+        required: true,
         minlength: 20
         },
     }
