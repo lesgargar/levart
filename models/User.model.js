@@ -1,27 +1,46 @@
 const { Schema, model } = require("mongoose");
 
 // TODO: Please make sure you edit the User model to whatever makes sense in this case
-const citySchema = new Schema(
+const userSchema = new Schema(
   {
-    name: String,
-    location: String,
-    image: {
-      type:String,
-      default: "/images/sunrise-1014712__480.jpg"
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+      minLength: 3 
     },
-    review:{
-      type: [{
-        type:Schema.Types.ObjectId, 
-        ref:"Review"
-      }]
+    lastName: {
+      type: String,
+      required: true,
+      trim: true,
+      minLength: 3
     },
-    memento:{
-      type:[{
-        type:Schema.Types.ObjectId,
-        ref:"memento"
-      }]
-    }
-
+    userName: {
+      type: String,
+      minLength: 3,
+      trim: true,
+    },
+    city: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    age: {
+      type: Date,
+      required: true,
+      trim: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      trim: true,
+      lowercase: true,
+    },
+    password: {
+      type: String,
+      required: true,
+      minLength: 8
+    },
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
@@ -29,6 +48,6 @@ const citySchema = new Schema(
   }
 );
 
-const City = model("City", citySchema);
+const User = model("User", userSchema);
 
-module.exports = City;
+module.exports = User;
