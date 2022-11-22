@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const City = require("../models/City.model");
+const Memento = require("../models/Memento.model")
 /* GET home page */
 router.get("/", (req, res, next) => {
   res.send("test ruta cities");
@@ -48,19 +49,21 @@ router.post("/:id/edit", (req, res, next) => {
     });
 });
 
-router.get("/:id/detail", (req, res, next) => {
+router.get("/:id/detail", async (req, res, next) => {
   //to change async await neddeed mementos y reviews
-    City.findById(req.params.id)
-    .then((city) => {
-      if (city == null) {
-        return res.redirect("/city");
-      }
-      console.log("detalle", city)
-      res.render("cities/cityDetail", city)
-    })
-    .catch((err) => {
-      res.redirect("/city");
-    });
+ try{
+  const {id} = req.params
+  const {_id} = req.session.currentUser
+  const city = await City.findById(id)
+  if (city == null) {
+    return res.redirect("/city");
+  }
+  const mementos = await Memento.find({ownerCity:id, owner:_id})
+      res.render("cities/cityDetail", {city, mementos})
+ }catch(err){
+  res.redirect("/city");
+ }
+
 });
 
 router.get("/:id/delete", (req, res, next) => {

@@ -5,7 +5,7 @@ const mementoSchema = new Schema({
   description: {
     type: String,
     required: true,
-    minlength: 20,
+  
   },
   owner: {
     type: Schema.Types.ObjectId,

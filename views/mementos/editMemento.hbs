@@ -1,5 +1,25 @@
-<form action="/mementos/edit" method="post">
-    <input type="text" name="title" placeholder="name">
-    <input type="text" name="description" placeholder="name">
-    <button type="submit">Save</button>
-</form>
+
+
+<div class="container">
+<div id="form">
+  <h2>Edit Memento</h2>
+  <form action="/memento/{{_id}}/edit" method="post">
+
+    <label> Title
+      <input type="text" name="name" placeholder="Memento title" value={{name}} />
+    </label>
+
+    <label>Memento 
+      <input type="text" name="location" placeholder="place your memories here" value={{description}} />
+    </label>
+
+    
+    <button class="btn red darken-2" type="submit">Save changes</button>
+
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>
+</div>
