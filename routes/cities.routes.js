@@ -4,7 +4,7 @@ const City = require("../models/City.model");
 const Memento = require("../models/Memento.model")
 /* GET home page */
 router.get("/", (req, res, next) => {
-  res.send("test ruta cities");
+  res.render("home");
 });
 
 router.get("/new", (req, res, next) => {
@@ -14,7 +14,6 @@ router.get("/new", (req, res, next) => {
 router.post("/new", (req, res, next) => {
   const { _id } = req.session.currentUser;
   const { name, location } = req.body;
-
   City.create({ name, location, owner: _id })
     .then((city) => {
       //cambiar a la ruta del perfil
