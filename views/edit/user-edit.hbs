@@ -1,0 +1,29 @@
+<h2>Edit a User</h2>
+ 
+<form action="/auth/list/{{_id}}/edit" method="post">
+  <label> Name:
+    <input type="text" name="name" value="{{name}}" />
+  </label>
+ 
+  <label> Last Name:
+    <input type="text" name="lastName" value="{{lastName}}"/>
+  </label>
+ 
+  <label> Username:
+    <input type="text" name="username" value="{{username}}"/>
+  </label>
+ 
+  <label> City:
+    <input type="text" name="city" value="{{city}}"/>
+  </label>
+
+  <label> Age:
+    <input type="Date" name="age" value="{{age}}"/>
+  </label>
+
+  <label> Email:
+    <input type="text" name="email" value="{{email}}"/>
+  </label>
+ 
+  <button type="submit"> Edit </button>
+</form>

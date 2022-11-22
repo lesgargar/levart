@@ -1,0 +1,182 @@
+<div class="container">
+  <div class="section">
+    <div class="row">
+
+      <div class="col l12">
+
+        <article
+          class="post-2320 post type-post status-publish format-standard has-post-thumbnail hentry category-downtown tag-mtlcafecrawl roaster-kittel metro-mcgill metro-place-des-arts moods-energetic purpose-social-meetups"
+          id="post-2320"
+        >
+
+          <div class="row">
+
+            <div class="col l8 s12">
+
+              <h2>{{city.name}}</h2>
+
+              <img
+                width="800"
+                height="600"
+                src={{city.image}}
+                class="single-photo responsive-img z-depth-3 wp-post-image"
+                alt={{city.name}}
+                title={{city.name}}
+                sizes="(max-width: 800px) 100vw, 800px"
+              />
+
+              {{! memento section }}
+              <div class="section">
+                <div class="row">
+                  <div class="col s12">
+                    <div class="section">
+                      <div class="col s12">
+                        <span calss="title"> Mementos</span>
+                      </div>
+                    </div>
+                    {{! aqui va un each para muchos mementos  }}
+                    {{#if mementos}}
+                      {{#each mementos}}
+                        <div class="col s12 m4">
+                          <div class="card">
+                            <div class="card-image">
+                                <a href="/memento/{{_id}}/delete/{{../city._id}}">
+                                 <i class="material-icons right">delete</i>
+                                </a>
+                                <a href="/memento/{{_id}}/edit">
+                                <i class="material-icons right">brush</i>
+                                </a>
+                                
+                            </div>
+                            <div class="card-content">
+                              <span class="card-title ">
+                                {{name}}
+                               
+                                
+                                </span>
+                              <span
+                                class=" brown-text text-darken-4"
+                                
+                              >{{description}} </span>
+                            </div>
+                          </div>
+                        </div>
+                      {{/each}}
+
+                    {{else}}
+                      <div class="col s12">
+                        <span calss="title">
+                          You don´t have any memento yet</span>
+                      </div>
+                    {{/if}}
+
+                    {{! aqui termina el each }}
+                  </div>
+                </div>
+              </div>
+              {{! termina memento section }}
+            </div>
+
+            <div class="col l4 s12">
+
+              <div class="card-panel alcaramel" style="min-height: 640px;">
+                <h6>DETAILS</h6>
+                <hr />
+
+                <span class="detail-title"><i
+                    class="mdi-communication-location-on"
+                  ></i>location</span>
+                <span class="">{{city.location}}</span>
+                <hr />
+
+                <span class="detail-title"><i
+                    class="mdi-action-store"
+                  ></i>{{city.description}}</span>
+                <hr />
+
+                <span class="detail-title"><i
+                    class="mdi-device-access-time"
+                  ></i>
+                  review</span>
+                <ul class="opening-hours">
+
+                  <li>aqui va un review</li>
+
+                </ul>
+                <span class="detail-title"><i
+                    class="mdi-image-photo-camera"
+                  ></i>
+
+                  <a target="_blank" href="">view more ...</a></span><hr />
+
+                <span class="detail-title"><i class="mdi-maps-map"></i>
+                  Add mementos</span>
+                <form
+                  action="/memento/{{city._id}}/new"
+                  method="POST"
+                  class="card-panel"
+                  id="suggest-form"
+                >
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input
+                        placeholder="Add a title"
+                        type="text"
+                        name="name"
+                        class="validate"
+                        required
+                      />
+                      <label for="name">Title</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input
+                        placeholder="Add your memories"
+                        type="text"
+                        name="description"
+                        class="validate"
+                        required
+                      />
+                      <label for="city">Memento</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col s12 right-align">
+
+                      <button
+                        class="btn-large teal"
+                        type="submit"
+                        name="action"
+                        value="suggests"
+                      >
+                        Submit
+                      </button>
+
+                    </div>
+                  </div>
+                </form>
+                <hr>
+                  <a href="/city/{{city._id}}/delete">
+                       Delete this city
+                  </a>
+                  <br>
+
+                  <a href="/city/{{city._id}}/edit">
+                    Update this city
+                  
+                  </a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </article>
+      </div>
+    </div>
+  </div>
+
+</div>

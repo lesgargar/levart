@@ -9,10 +9,17 @@ const reviewSchema = new Schema(
       trim: true,
       minLength: 10 
     },
-    creator: {
-      type: String,
-      required: true,
-      trim: true,
+    owner:{
+      type:String
+      // type: Schema.Types.ObjectId,
+      // ref:"User",
+      // required: true,
+    },
+    ownerCity: {
+      type:String
+      // type: Schema.Types.ObjectId,
+      // ref:"City",
+      // required: true,
     },
     date: {
       type: Date,

@@ -1,0 +1,25 @@
+<div class="container">
+<div id="form">
+  <h2>Create City</h2>
+  <form action="/city/new" method="post">
+
+    <label> Name
+      <input type="text" name="name" placeholder="City's name" />
+    </label>
+
+    <label>Location 
+      <input type="text" name="location" placeholder="where is it?" />
+    </label>
+    <label>Description 
+      <input type="text" name="description" placeholder="something to say about" />
+    </label>
+    
+    <button class="btn red darken-2" type="submit">Save city</button>
+
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>
+</div>

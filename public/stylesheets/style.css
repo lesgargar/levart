@@ -6,3 +6,37 @@
 .txtcenter{
   text-align: center;
 }
+
+
+.back-image{
+  background-image: url("https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80");
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.txt{
+  padding: 20px;
+  height: 400px;
+  width: 800px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgb(255, 254, 255, 50%);
+}
+
+.about{
+font-size: 20px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.center{
+
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+}

@@ -22,10 +22,10 @@ router.get("/signup", isLoggedOut, (req, res) => {
 
 // POST /auth/signup
 router.post("/signup", isLoggedOut, (req, res) => {
-  const { name, lastName, userName, city, age, email, password } = req.body;
+  const { name, lastName, username, city, age, email, password } = req.body;
   console.log(req.body);
   // Check that username, email, and password are provided
-  if (userName === "" || email === "" || password === "") {
+  if (username === "" || email === "" || password === "") {
     res.status(400).render("auth/signup", {
       errorMessage:
         "All fields are mandatory. Please provide your username, email and password.",
@@ -63,7 +63,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
       // Create a user and save it in the database
       return User.create({name, 
         lastName, 
-        userName, 
+        username, 
         city, 
         age, 
         email, 
@@ -73,6 +73,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
       res.redirect("/auth/login");
     })
     .catch((error) => {
+      console.log("error",error);
       if (error instanceof mongoose.Error.ValidationError) {
         res.status(500).render("auth/signup", { errorMessage: error.message });
       } else if (error.code === 11000) {
@@ -85,6 +86,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
       }
     });
 });
+
 
 // GET /auth/login
 router.get("/login", isLoggedOut, (req, res) => {
@@ -154,9 +156,66 @@ router.get("/logout", isLoggedIn, (req, res) => {
       res.status(500).render("auth/logout", { errorMessage: err.message });
       return;
     }
-
     res.redirect("/");
   });
 });
+
+
+// GET route to retrieve and display all the users
+// GET /auth/list
+router.get('/list', (req, res) => {
+  //1. Traer los datos de la base de datos
+  //Los metodos usados con mongoose nos dan una Promise
+  User.find()
+  .then((users)=>{
+      console.log("Lista de users",users);
+   //2. UNA VEZ que tenemos los datos mandalos al templete
+   res.render('list/users', {User: users});      
+  })
+  .catch(err=>console.log(err));
+});
+
+
+
+//Obtener REVIEW por id y editar
+router.get("/list/:_id/edit", async (req,res, next)=>{
+  try{
+      const {_id} = req.params
+      //1. Obtener los datos de DB (database)
+      const data = await User.findById(_id);
+      console.log("filtro", data);
+      res.render("edit/user-edit",data)
+  }catch(err){
+      res.redirect("/list")
+  }
+})
+
+//Ruta para actualizar el usuario POST
+router.post("/list/:_id/edit", async (req,res)=>{
+  console.log("Datos", req.body);
+  const {_id} = req.params
+  const dataU = await User.findByIdAndUpdate(_id, req.body)
+  console.log(dataU);
+  res.redirect(`/auth/${_id}`);
+})
+
+
+//detail user after edit
+router.get("/:_id",async (req,res)=>{
+  console.log(req.params._id);
+  const data = await User.findById(req.params._id);
+  res.render("details/user-detail", data)
+})
+
+//Delet user
+router.post("/list/:_id/delete", (req,res)=>{
+  const {_id} = req.params
+  User.findByIdAndDelete(_id)
+      .then(()=>res.redirect("/auth/list"))
+      .catch(console.log)
+})
+
+
+
 
 module.exports = router;
