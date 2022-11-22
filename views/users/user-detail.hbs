@@ -1,20 +1,14 @@
 <div class="container">
   <div class="section">
     <div class="row">
-
       <div class="col l12">
-
         <article
           class="post-2320 post type-post status-publish format-standard has-post-thumbnail hentry category-downtown tag-mtlcafecrawl roaster-kittel metro-mcgill metro-place-des-arts moods-energetic purpose-social-meetups"
           id="post-2320"
         >
-
           <div class="row">
-
             <div class="col l8 s12">
-
-              <h2>{{name}}</h2>
-
+              <h2>{{name}} {{currentUser.name}}</h2>
               <img
                 width="450"
                 height="450"
@@ -22,8 +16,6 @@
                 class="single-photo responsive-img z-depth-3 wp-post-image"
                 sizes="(max-width: 400px) 100vw, 400px"
               />
-
-              {{! memento section }}
               <div class="section">
                 <div class="row">
                   <div class="col s12">
@@ -35,52 +27,37 @@
                   </div>
                 </div>
               </div>
-              {{! termina memento section }}
+             
             </div>
-
             <div class="col l4 s12">
-
               <div class="card-panel alcaramel" style="min-height: 640px;">
                 <h6>DETAILS USER</h6>
                 <hr />
-
                 <span class="detail-title"><i
                     class="mdi-communication-location-on"
                   ></i>Last Name: </span>
-                <span class="">{{lastName}}</span>
+                <span class="">{{lastName}} {{currentUser.lastName}}</span>
                 <hr />
-
-                
-
                 <span class="detail-title"><i
                     class="mdi-action-store"
-                  ></i>Username: {{username}}</span>
+                  ></i>Username: {{username}} {{currentUser.username}}</span>
                 <hr />
-
                 <span class="detail-title"><i
                     class="mdi-device-access-time"
-                  ></i>City: {{city}}</span>
+                  ></i>City: {{city}} {{currentUser.city}}</span>
                 <ul class="opening-hours">
                     <hr />
-
                 <span class="detail-title"><i
                     class="mdi-device-access-time"
-                  ></i>Age: {{age}} </span>
+                  ></i>Age: {{age}} {{currentUser.age}}</span>
                 <ul class="opening-hours">
                     <hr />
-
                 <span class="detail-title"><i
                     class="mdi-device-access-time"
-                  ></i>Email: {{email}} </span>
-                <ul class="opening-hours">
-                    <hr /> 
-
-                <span class="detail-title"><i
-                    class="mdi-device-access-time"
-                  ></i>Email: {{email}} </span>
+                  ></i>Email: {{email}} {{currentUser.email}}</span>
                 <ul class="opening-hours">
                     <hr />                       
-                  <a href="/auh/list">
+                  <a href="/auth/list">
                        Back
                   </a>
               </div>

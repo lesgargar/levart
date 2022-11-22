@@ -22,23 +22,19 @@ router.get("/signup", isLoggedOut, (req, res) => {
 
 // POST /auth/signup
 router.post("/signup", isLoggedOut, (req, res) => {
-  const { name, lastName, username, city, age, email, password } = req.body;
-  console.log(req.body);
+  const { name, lastName, username, city, age, email, password, _id } = req.body;
   // Check that username, email, and password are provided
   if (username === "" || email === "" || password === "") {
     res.status(400).render("auth/signup", {
       errorMessage:
         "All fields are mandatory. Please provide your username, email and password.",
     });
-
     return;
   }
-
   if (password.length < 8) {
     res.status(400).render("auth/signup", {
       errorMessage: "Your password needs to be at least 8 characters long.",
     });
-
     return;
   }
 
@@ -70,7 +66,9 @@ router.post("/signup", isLoggedOut, (req, res) => {
         password : hashedPassword });
     })
     .then((user) => {
-      res.redirect("/auth/login");
+      req.session.currentUser = user.toObject();
+      res.render("users/user-detail", {currentUser:req.session.currentUser})
+
     })
     .catch((error) => {
       console.log("error",error);
@@ -87,7 +85,6 @@ router.post("/signup", isLoggedOut, (req, res) => {
     });
 });
 
-
 // GET /auth/login
 router.get("/login", isLoggedOut, (req, res) => {
   res.render("auth/login");
@@ -103,17 +100,13 @@ router.post("/login", isLoggedOut, (req, res, next) => {
       errorMessage:
         "All fields are mandatory. Please provide username, email and password.",
     });
+    return;}
 
-    return;
-  }
-
-  // Here we use the same logic as above
   // - either length based parameters or we check the strength of a password
   if (password.length < 6) {
     return res.status(400).render("auth/login", {
       errorMessage: "Your password needs to be at least 6 characters long.",
-    });
-  }
+    });}
 
   // Search the database for a user with the email submitted in the form
   User.findOne({ email })
@@ -123,9 +116,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
         res
           .status(400)
           .render("auth/login", { errorMessage: "Wrong credentials." });
-        return;
-      }
-
+        return; }
       // If user is found based on the username, check if the in putted password matches the one saved in the database
       bcrypt
         .compare(password, user.password)
@@ -134,15 +125,13 @@ router.post("/login", isLoggedOut, (req, res, next) => {
             res
               .status(400)
               .render("auth/login", { errorMessage: "Wrong credentials." });
-            return;
-          }
-
+            return;}
           // Add the user object to the session object
           req.session.currentUser = user.toObject();
           // Remove the password field
           delete req.session.currentUser.password;
-
-          res.redirect("/");
+          //render detail user
+          res.render("users/user-detail", {currentUser:req.session.currentUser})
         })
         .catch((err) => next(err)); // In this case, we send error handling to the error handling middleware.
     })
@@ -160,51 +149,38 @@ router.get("/logout", isLoggedIn, (req, res) => {
   });
 });
 
-
 // GET route to retrieve and display all the users
-// GET /auth/list
 router.get('/list', (req, res) => {
-  //1. Traer los datos de la base de datos
-  //Los metodos usados con mongoose nos dan una Promise
   User.find()
   .then((users)=>{
-      console.log("Lista de users",users);
-   //2. UNA VEZ que tenemos los datos mandalos al templete
-   res.render('list/users', {User: users});      
+   res.render('users/users', {User: users});      
   })
   .catch(err=>console.log(err));
 });
 
-
-
-//Obtener REVIEW por id y editar
+//GET auth id AND EDIT
 router.get("/list/:_id/edit", async (req,res, next)=>{
   try{
       const {_id} = req.params
       //1. Obtener los datos de DB (database)
       const data = await User.findById(_id);
-      console.log("filtro", data);
-      res.render("edit/user-edit",data)
+      res.render("users/user-edit",data)
   }catch(err){
       res.redirect("/list")
   }
 })
 
-//Ruta para actualizar el usuario POST
+//UPDATE USER POST
 router.post("/list/:_id/edit", async (req,res)=>{
-  console.log("Datos", req.body);
   const {_id} = req.params
   const dataU = await User.findByIdAndUpdate(_id, req.body)
-  console.log(dataU);
   res.redirect(`/auth/${_id}`);
 })
 
-
 //detail user after edit
 router.get("/:_id",async (req,res)=>{
-  console.log(req.params._id);
   const data = await User.findById(req.params._id);
-  res.render("details/user-detail", data)
+  res.render("users/user-detail", data)
 })
 
 //Delet user
@@ -214,8 +190,6 @@ router.post("/list/:_id/delete", (req,res)=>{
       .then(()=>res.redirect("/auth/list"))
       .catch(console.log)
 })
-
-
 
 
 module.exports = router;
