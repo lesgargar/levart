@@ -1,0 +1,21 @@
+<h2>Edit a book</h2>
+ 
+<form action="/list/{{_id}}/edit" method="post">
+  <label> Date:
+    <input type="date" name="date" value="{{date}}" />
+  </label>
+ 
+  <label> Owner:
+    <input type="text" name="owner" value="{{owner}}"/>
+  </label>
+ 
+  <label> Owner City:
+    <input type="text" name="ownerCity" value="{{ownerCity}}"/>
+  </label>
+ 
+  <label> Review:
+    <input type="text" name="review" value="{{review}}"/>
+  </label>
+ 
+  <button type="submit"> Edit </button>
+</form>
