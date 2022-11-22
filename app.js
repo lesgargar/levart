@@ -32,11 +32,14 @@ app.use("/", indexRoutes);
 const authRoutes = require("./routes/auth.routes");
 app.use("/auth", authRoutes);
 
-const mementoRoutes = require("./routes/memento.routes")
-app.use("/memento", mementoRoutes)
+const mementoRoutes = require("./routes/memento.routes");
+app.use("/memento", mementoRoutes);
 
-const reviewRoutes = require("./routes/review.routes")
-app.use("/review", reviewRoutes)
+const reviewRoutes = require("./routes/review.routes");
+app.use("/review", reviewRoutes);
+
+const citiesRoutes = require("./routes/cities.routes");
+app.use("/city", citiesRoutes);
 
 
 
