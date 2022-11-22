@@ -5,21 +5,14 @@ const citySchema = new Schema(
   {
     name: String,
     location: String,
+    description:String,
     image: {
       type:String,
-      default: "/images/sunrise-1014712__480.jpg"
+      default: "https://cdn.pixabay.com/photo/2022/10/24/18/10/street-7544046_960_720.jpg"
     },
-    review:{
-      type: [{
-        type:Schema.Types.ObjectId, 
-        ref:"Review"
-      }]
-    },
-    memento:{
-      type:[{
-        type:Schema.Types.ObjectId,
-        ref:"memento"
-      }]
+    owner:{
+      type: Schema.Types.ObjectId,
+      ref:"User"
     }
 
   },
