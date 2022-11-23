@@ -12,7 +12,7 @@ router.get('/list', (req, res) => {
     Review.find()
     .then((reviews)=>{
      //2. UNA VEZ que tenemos los datos mandalos al templete
-     res.render('reviews/reviews', {Review: reviews});      
+     res.render('reviews/reviews', {Review: reviews, currentUser:req.session.currentUser});      
     })
     .catch(err=>console.log(err));
 });
@@ -20,7 +20,7 @@ router.get('/list', (req, res) => {
 // GET /review/create
 router.get("/:idCity/create-review", (req, res) => {
    // const {idCity} = req.session.currentUser
-  res.render("reviews/createReview", {id:req.params.idCity});
+  res.render("reviews/createReview", {id:req.params.idCity, currentUser:req.session.currentUser});
 });
 
 //POST /review/create
@@ -36,7 +36,7 @@ router.post("/:idCity/create-review", async (req, res, next) => {
         })
         Review.find()
         .then((reviews)=>{
-         res.render('reviews/reviews', {Review: reviews});  
+         res.render('reviews/reviews', {Review: reviews, currentUser:req.session.currentUser});  
         })
     }catch(err){
         console.log(err);
@@ -47,7 +47,7 @@ router.post("/:idCity/create-review", async (req, res, next) => {
 router.get('/list', (req, res) => {
     Review.find()
     .then((reviews)=>{
-     res.render('reviews/reviews', {Review: reviews});      
+     res.render('reviews/reviews', {Review: reviews, currentUser:req.session.currentUser});      
     })
     .catch(err=>console.log(err));
   });
@@ -57,7 +57,7 @@ router.get("/list/:_id/detail", async (req,res, next)=>{
     try{
         const {_id} = req.params
         const data = await Review.findById(_id);
-        res.render("reviews/review-details",data)
+        res.render("reviews/review-details", {currentUser:req.session.currentUser,data})
     }catch(err){
         res.redirect("/list")
     }
@@ -69,7 +69,7 @@ router.get("/list/:_id/edit", async (req,res, next)=>{
     try{
         const {_id} = req.params
         const data = await Review.findById(_id);
-        res.render("reviews/review-edit",data)
+        res.render("reviews/review-edit",{currentUser:req.session.currentUser,data})
     }catch(err){
         res.redirect("/list")
     }
@@ -82,7 +82,7 @@ router.post("/list/:_id/edit", async (req,res)=>{
     console.log(data);
     Review.find()
     .then((reviews)=>{
-     res.render('reviews/reviews', {Review: reviews});      
+     res.render('reviews/reviews', {Review: reviews, currentUser:req.session.currentUser});      
     })
     .catch(err=>console.log(err));
 })

@@ -13,7 +13,7 @@ router.get("/:idMemento/edit", (req, res, next)=>{
       if (memento == null) {
         return res.redirect("/city");
       }
-      res.render("mementos/editMemento", memento);
+      res.render("mementos/editMemento", memento,{currentUser:req.session.currentUser});
     })
     .catch((err) => {
       res.redirect("/city");
@@ -28,7 +28,7 @@ router.post("/:idMemento/edit", (req, res, next) => {
       res.redirect(`/city/${mementoUpdated.ownerCity}/detail`);
     })
     .catch((err) => {
-      res.render("mementos/editMemento", { _id: idMemento, ...restBody });
+      res.render("mementos/editMemento", { currentUser:req.session.currentUser, _id: idMemento, ...restBody });
     });
 });
 
@@ -39,7 +39,7 @@ router.post("/:idCity/new", (req, res, next) => {
   const {name, description} = req.body
   Memento.create({name, description, owner:_id, ownerCity:idCity})
   .then((memento)=>{
-    res.redirect(`/city/${idCity}/detail`)
+    res.redirect(`/city/${idCity}/detail`,{currentUser:req.session.currentUser})
   })
   .catch((err)=>{ 
     res.redirect(`/city/${idCity}/detail`)})
@@ -49,7 +49,7 @@ router.get("/:idMemento/delete/:idCity", (req, res, next)=>{
   const {idCity, idMemento} = req.params
   Memento.findByIdAndDelete(idMemento)
   .then(()=>{
-    res.redirect(`/city/${idCity}/detail`)
+    res.redirect(`/city/${idCity}/detail`,{currentUser:req.session.currentUser})
   })
   .catch((err)=>{ res.redirect(`/city/${idCity}/detail`)})
 })
