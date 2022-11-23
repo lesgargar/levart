@@ -1,13 +1,15 @@
+<div class="details ">
 <h1>Reviews List</h1>
 {{#each Review}}
-    <div>
+    <div class="borderS">
         <h4>Owner: {{owner}}</h4>
         <h4>Owner City: {{ownerCity}}</h4>
         <h4>Date: {{date}}</h4>
         <h4>Review: {{review}}</h4>
-        <a href="/review/list/{{_id}}/edit">Edit</a>
+        <a class="btn-large teal m20" href="/review/list/{{_id}}/edit">Edit</a>
         <form action="/review/list/{{_id}}/delete" method="post">
-            <button type="submit">Delete</button>
+            <button class="btn-large teal m20" type="submit">Delete</button>
         </form>
     </div>
 {{/each}}
+</div>

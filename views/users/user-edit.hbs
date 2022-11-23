@@ -1,3 +1,4 @@
+<div class="details">
 <h2>Edit a User</h2>
 <form action="/auth/list/{{_id}}/edit" method="post">
   <label> Name:
@@ -17,7 +18,7 @@
   </label>
 
   <label> Age:
-    <input type="Date" name="age" value="{{age}}"/>
+    <input type="number" name="age" value="{{age}}"/>
   </label>
 
   <label> Email:
@@ -26,3 +27,4 @@
  
   <button type="submit"> Edit </button>
 </form>
+</div>
