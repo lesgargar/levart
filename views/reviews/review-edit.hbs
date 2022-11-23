@@ -1,0 +1,12 @@
+<h2>Edit a review</h2>
+<form action="/review/list/{{_id}}/edit" method="post">
+  <label> Date:
+    <input type="date" name="date" value="{{date}}" />
+  </label>
+ 
+  <label> Review:
+    <input type="text" name="review" value="{{review}}"/>
+  </label>
+ 
+  <button type="submit"> Edit </button>
+</form>

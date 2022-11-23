@@ -6,20 +6,17 @@ const reviewSchema = new Schema(
     review: {
       type: String,
       required: true,
-      trim: true,
-      minLength: 10 
+      trim: true
     },
     owner:{
-      type:String
-      // type: Schema.Types.ObjectId,
-      // ref:"User",
-      // required: true,
+      type: Schema.Types.ObjectId,
+      ref:"User",
+      required: true,
     },
     ownerCity: {
-      type:String
-      // type: Schema.Types.ObjectId,
-      // ref:"City",
-      // required: true,
+      type: Schema.Types.ObjectId,
+      ref:"City",
+      required: true,
     },
     date: {
       type: Date,

@@ -1,27 +1,14 @@
 <div class="container">
 <div id="form">
   <h2>Create a Review</h2>
-  <form action="/review/create" method="POST">
-
+  <form action="/review/{{id}}/create-review" method="POST">
   <label> Date
       <input type="date" name="date" placeholder="Date" />
     </label> 
-
-    <label> Owner
-      <input type="text" name="owner" placeholder="Your Name" />
-    </label>
-
-    <label> Owner City
-      <input type="text" name="ownerCity" placeholder="Owner City" />
-    </label>
-
     <label>Review
       <input type="text" name="review" placeholder="Your Review here" />
     </label>
-
     <button class="btn red darken-2" type="submit">Create</button>
-
-
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
     {{/if}}
