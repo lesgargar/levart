@@ -1,21 +1,25 @@
 <div class="container">
 <div id="login-form">
-  <h2>Log In</h2>
+  
+  <h2><i class=" large material-icons prefix">account_box</i>Log In</h2>
   <form action="/auth/login" method="POST">
-
-    <label> Username
-      <input type="text" name="username" placeholder="Your username" />
-    </label>
-
-    <label> Email
-      <input type="email" name="email" placeholder="Your email" />
-    </label>
-
-    <label> Password
-      <input type="password" name="password" placeholder="Your password" />
-    </label>
-
-    <button class="btn red darken-2" type="submit">Log In</button>
+    <div class="input-field col s6">
+          <i class="material-icons prefix">account_circle</i>
+          <input name="username" id="icon_prefix" type="text" class="validate">
+          <label for="icon_prefix">Your user name</label>
+    </div>
+    <div class="input-field col s6">
+          <i class="material-icons prefix">email</i>
+          <input name="email" id="icon_prefix" type="email" class="validate">
+          <label for="icon_prefix">Your email</label>
+    </div>
+    <div class="input-field col s6">
+          <i class="material-icons prefix">dialpad</i>
+          <input name="password" id="icon_prefix" type="password" class="validate">
+          <label for="icon_prefix">Your password</label>
+    </div>
+    <button class="btn-large teal" type="submit">Log In <i class="large material-icons prefix">near_me</i>
+    </button>
 
 
     {{#if errorMessage}}
