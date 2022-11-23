@@ -9,7 +9,7 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/new", (req, res, next) => {
-  res.render("cities/createCity");
+  res.render("cities/createCity", {currentUser:req.session.currentUser});
 });
 
 router.post("/new", (req, res, next) => {
@@ -31,7 +31,7 @@ router.get("/:id/edit", (req, res, next) => {
       if (city == null) {
         return res.redirect("/city");
       }
-      res.render("cities/editCity", city);
+      res.render("cities/editCity" , {currentUser:req.session.currentUser, city});
     })
     .catch((err) => {
       res.redirect("/city");
