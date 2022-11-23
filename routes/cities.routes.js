@@ -18,7 +18,7 @@ router.post("/new", (req, res, next) => {
   City.create({ name, location, owner: _id })
     .then((city) => {
       //cambiar a la ruta del perfil
-      res.redirect("/city");
+      res.redirect("/");
     })
     .catch((err) => {
       res.render("cities/createCity", {currentUser:req.session.currentUser});
@@ -31,6 +31,7 @@ router.get("/:id/edit", (req, res, next) => {
       if (city == null) {
         return res.redirect("/city");
       }
+      console.log(city)
       res.render("cities/editCity" , {currentUser:req.session.currentUser, city});
     })
     .catch((err) => {
@@ -70,7 +71,7 @@ router.get("/:id/detail", async (req, res, next) => {
 router.get("/:id/delete", (req, res, next) => {
     City.findByIdAndDelete(req.params.id)
     .then((city) => {
-      res.redirect("/city");
+      res.redirect("/");
     })
     .catch((err) => {
       res.redirect("/city");

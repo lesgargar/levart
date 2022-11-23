@@ -112,9 +112,27 @@
                 <span class="detail-title"><i
                     class="mdi-image-photo-camera"
                   ></i>
-
-                  <a target="_blank" href="">view more ...</a>
-                   <a href="/review/{{city._id}}/create-review">add more ...</a>
+                  <a href="/review/{{city._id}}/create-review">
+                  <button
+                        class="btn-large teal"
+                        name="action"
+                        value="suggests"
+                      >
+                      Add new review
+                      </button>
+                  </a>
+                  <br>
+                  <br>
+                  <a target="_blank" href="">
+                    <button
+                        class="btn-large teal"
+                        name="action"
+                        value="suggests"
+                      >
+                      View my reviews
+                      </button>
+                      </a>
+                   
                   </span><hr />
 
                 <span class="detail-title"><i class="mdi-maps-map"></i>
@@ -166,15 +184,31 @@
                   </div>
                 </form>
                 <hr>
+
+                <a href="/city/{{city._id}}/edit">
+                    <button
+                        class="btn-large teal"
+                        
+                        name="action"
+                        value="suggests"
+                      >
+                        Edit this city
+                      </button>
+                  </a>
+                  <br>
+                  <br>
                   <a href="/city/{{city._id}}/delete">
-                       Delete this city
+                        <button
+                        class="btn-large teal"
+                        name="action"
+                        value="suggests"
+                      >
+                        delete this city
+                      </button>
                   </a>
                   <br>
 
-                  <a href="/city/{{city._id}}/edit">
-                    Update this city
-                  
-                  </a>
+                 
 
               </div>
 
