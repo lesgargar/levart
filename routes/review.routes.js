@@ -52,6 +52,18 @@ router.get('/list', (req, res) => {
     .catch(err=>console.log(err));
   });
 
+//Obtener REVIEW por id 
+router.get("/list/:_id/detail", async (req,res, next)=>{
+    try{
+        const {_id} = req.params
+        const data = await Review.findById(_id);
+        res.render("reviews/review-details",data)
+    }catch(err){
+        res.redirect("/list")
+    }
+})
+
+
 //Obtener REVIEW por id y editar
 router.get("/list/:_id/edit", async (req,res, next)=>{
     try{

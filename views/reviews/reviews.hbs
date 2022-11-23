@@ -2,10 +2,9 @@
 <h1>Reviews List</h1>
 {{#each Review}}
     <div class="borderS">
-        <h4>Owner: {{owner}}</h4>
-        <h4>Owner City: {{ownerCity}}</h4>
         <h4>Date: {{date}}</h4>
         <h4>Review: {{review}}</h4>
+        <a class="btn-large teal m20" href="/review/list/{{_id}}/detail">Details</a>
         <a class="btn-large teal m20" href="/review/list/{{_id}}/edit">Edit</a>
         <form action="/review/list/{{_id}}/delete" method="post">
             <button class="btn-large teal m20" type="submit">Delete</button>
