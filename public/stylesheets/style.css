@@ -49,12 +49,7 @@ align-items: center;
   flex-wrap: wrap;
 }
 
-.card{
-  display: flex;
-  flex-direction: column;
-  width: 30%;
-  align-items: center;
-}
+
 
 .details{
   margin: auto;

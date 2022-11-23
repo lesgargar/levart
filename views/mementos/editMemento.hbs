@@ -3,14 +3,14 @@
 <div class="container">
 <div id="form">
   <h2>Edit Memento</h2>
-  <form action="/memento/{{_id}}/edit" method="post">
+  <form action="/memento/{{memento._id}}/edit" method="post">
 
     <label> Title
-      <input type="text" name="name" placeholder="Memento title" value={{name}} />
+      <input type="text" name="name" placeholder="Memento title" value={{memento.name}} />
     </label>
 
     <label>Memento 
-      <input type="text" name="location" placeholder="place your memories here" value={{description}} />
+      <input type="text" name="location" placeholder="place your memories here" value={{memento.description}} />
     </label>
 
     
