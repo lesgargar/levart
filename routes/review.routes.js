@@ -36,7 +36,7 @@ router.post("/:idCity/create-review", async (req, res, next) => {
         })
         Review.find()
         .then((reviews)=>{
-         res.render('reviews/reviews', {Review: reviews, currentUser:req.session.currentUser});  
+        res.render('users/user-detail', {Review: reviews, currentUser:req.session.currentUser}); 
         })
     }catch(err){
         console.log(err);
