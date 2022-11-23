@@ -7,7 +7,6 @@
         {{#unless currentUser}}
         <li><a href="/auth/signup">Signup</a></li>
         <li><a href="/auth/login">Login</a></li>
-        <li><a href="/auth/logout">Logout</a></li>
         {{/unless}}
           {{#if currentUser}}
           <strong><u>{{currentUser.name}} - {{currentUser.lastName}}</u></strong>
