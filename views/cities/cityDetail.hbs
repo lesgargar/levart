@@ -97,10 +97,16 @@
                 <span class="detail-title"><i
                     class="mdi-device-access-time"
                   ></i>
-                  review</span>
+                  Review</span>
                 <ul class="opening-hours">
-
-                  <li>aqui va un review</li>
+                    {{#if reviews}}
+                      {{#each reviews}}
+                      <li>{{review}}</li>
+                      {{/each}}
+                    {{else }}
+                      <li>Add new review</li>
+                    {{/if}}
+                  
 
                 </ul>
                 <span class="detail-title"><i
@@ -108,7 +114,7 @@
                   ></i>
 
                   <a target="_blank" href="">view more ...</a>
-                   <a target="_blank" href="/review/{{city._id}}/create-review">add more ...</a>
+                   <a href="/review/{{city._id}}/create-review">add more ...</a>
                   </span><hr />
 
                 <span class="detail-title"><i class="mdi-maps-map"></i>

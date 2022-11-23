@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const City = require("../models/City.model");
 const Memento = require("../models/Memento.model")
+const Review = require("../models/Review.model")
 /* GET home page */
 router.get("/", (req, res, next) => {
   res.render("home");
@@ -41,9 +42,11 @@ router.post("/:id/edit", (req, res, next) => {
   const { owner, ...restBody } = req.body;
   City.findByIdAndUpdate(id, restBody, { new: true })
     .then((city) => {
-      res.redirect("/city");
+      res.redirect(`/city/${id}/detail`);
     })
     .catch((err) => {
+      console.log(err)
+
       res.render("cities/editCity", { _id: id, ...restBody });
     });
 });
@@ -58,7 +61,8 @@ router.get("/:id/detail", async (req, res, next) => {
     return res.redirect("/city");
   }
   const mementos = await Memento.find({ownerCity:id, owner:_id})
-      res.render("cities/cityDetail", {city, mementos})
+  const reviews = await Review.find({ownerCity: id, owner:_id})
+      res.render("cities/cityDetail", {city, mementos, reviews})
  }catch(err){
   res.redirect("/city");
  }
