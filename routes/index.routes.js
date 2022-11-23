@@ -8,7 +8,6 @@ router.get("/",  async(req, res, next) => {
    
     const {_id} = req.session.currentUser
     const cities = await City.find({owner:_id})
-   
     if ( req.session.currentUser){
       res.render("users/user-detail", {cities, currentUser:req.session.currentUser  })
     }else{
@@ -19,6 +18,5 @@ router.get("/",  async(req, res, next) => {
 }
 
 });
-
 
 module.exports = router;

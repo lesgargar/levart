@@ -5,7 +5,7 @@ const Memento = require("../models/Memento.model")
 const Review = require("../models/Review.model")
 /* GET home page */
 router.get("/", (req, res, next) => {
-  res.render("home");
+  res.render("home", {currentUser:req.session.currentUser});
 });
 
 router.get("/new", (req, res, next) => {
@@ -21,7 +21,7 @@ router.post("/new", (req, res, next) => {
       res.redirect("/city");
     })
     .catch((err) => {
-      res.render("cities/createCity");
+      res.render("cities/createCity", {currentUser:req.session.currentUser});
     });
 });
 
@@ -45,9 +45,7 @@ router.post("/:id/edit", (req, res, next) => {
       res.redirect(`/city/${id}/detail`);
     })
     .catch((err) => {
-      console.log(err)
-
-      res.render("cities/editCity", { _id: id, ...restBody });
+      res.render("cities/editCity", { _id: id, ...restBody, currentUser:req.session.currentUser });
     });
 });
 
@@ -62,7 +60,7 @@ router.get("/:id/detail", async (req, res, next) => {
   }
   const mementos = await Memento.find({ownerCity:id, owner:_id})
   const reviews = await Review.find({ownerCity: id, owner:_id})
-      res.render("cities/cityDetail", {city, mementos, reviews})
+      res.render("cities/cityDetail", {city, mementos, reviews, currentUser:req.session.currentUser})
  }catch(err){
   res.redirect("/city");
  }
