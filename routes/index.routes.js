@@ -8,13 +8,6 @@ router.get("/",  (req, res, next) => {
   }else{
     res.render("home")
   }
-  // try{ 
-  //   const currentUser = await req.session.currentUser
-  // res.render("users/user-detail");
-  // }catch{
-  //   res.render("/home")
-  // }
 });
-
 
 module.exports = router;

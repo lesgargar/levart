@@ -44,7 +44,7 @@ router.post("/:id/edit", (req, res, next) => {
       res.redirect("/city");
     })
     .catch((err) => {
-      res.render("cities/editCity", { _id: id, ...restBody });
+      res.render("cities/editCity", {currentUser:req.session.currentUser, _id: id, ...restBody });
     });
 });
 
@@ -58,7 +58,7 @@ router.get("/:id/detail", async (req, res, next) => {
     return res.redirect("/city");
   }
   const mementos = await Memento.find({ownerCity:id, owner:_id})
-      res.render("cities/cityDetail", {city, mementos})
+      res.render("cities/cityDetail", {city, mementos, currentUser:req.session.currentUser})
  }catch(err){
   res.redirect("/city");
  }
@@ -68,7 +68,7 @@ router.get("/:id/detail", async (req, res, next) => {
 router.get("/:id/delete", (req, res, next) => {
     City.findByIdAndDelete(req.params.id)
     .then((city) => {
-      res.redirect("/city");
+      res.redirect("/city",{currentUser:req.session.currentUser});
     })
     .catch((err) => {
       res.redirect("/city");
