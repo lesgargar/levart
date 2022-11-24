@@ -43,7 +43,8 @@ router.post("/signup", isLoggedOut, (req, res) => {
     .then((salt) => bcrypt.hash(password, salt))
     .then((hashedPassword) => {
       // Create a user and save it in the database
-      return User.create({name, 
+      return User.create({
+        name, 
         lastName, 
         username, 
         city, 
@@ -161,7 +162,7 @@ router.get("/list/:_id/edit", async (req,res, next)=>{
       const {_id} = req.params
       //1. Obtener los datos de DB (database)
       const data = await User.findById(_id);
-      res.render("users/user-edit",data)
+      res.render("/list/:_id/edit",data)
   }catch(err){
       res.redirect("/list")
   }
