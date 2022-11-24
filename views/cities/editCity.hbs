@@ -1,26 +1,38 @@
+<div class="form-size">
 <div class="container">
+  {{#with city}}
 <div id="form">
   <h2>Edit City</h2>
-  <form action="/city/{{_id}}/edit" method="post">
+  <form action="/city/{{_id}}/edit" method="post" enctype="multipart/form-data">
 
     <label> Name
-      <input type="text" name="name" placeholder="City's name" value={{name}} />
+      <input type="text" name="name" placeholder="City's name" value="{{name}}" />
     </label>
 
     <label>Location 
-      <input type="text" name="location" placeholder="where is it?" value={{location}} />
+      <input type="text" name="location" placeholder="where is it?" value="{{location}} "/>
     </label>
     <label>Description 
-      <input type="text" name="location" placeholder="where is it?" value={{description}} />
+      <input type="text" name="description" placeholder="where is it?" value="{{description}}"/>
     </label>
-
+      <label>Upload a photo
+        <input type="file" name="image" />
+      </label>
     
-    <button class="btn red darken-2" type="submit">Save changes</button>
+    <button
+        class="btn-large teal"
+        name="action"
+        value="suggests"
+        >
+        save changes
+    </button>
 
 
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
     {{/if}}
   </form>
+  {{/with}}
+</div>
 </div>
 </div>

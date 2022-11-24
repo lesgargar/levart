@@ -1,6 +1,6 @@
+<div class="details">
 <h2>Edit a User</h2>
- 
-<form action="/auth/list/{{_id}}/edit" method="post">
+<form action="/auth/list/{{_id}}/edit" method="post" enctype="multipart/form-data">
   <label> Name:
     <input type="text" name="name" value="{{name}}" />
   </label>
@@ -18,12 +18,15 @@
   </label>
 
   <label> Age:
-    <input type="Date" name="age" value="{{age}}"/>
+    <input type="number" name="age" value="{{age}}"/>
   </label>
 
   <label> Email:
     <input type="text" name="email" value="{{email}}"/>
   </label>
- 
-  <button type="submit"> Edit </button>
+  <label>Upload a photo
+        <input type="file" name="image" />
+  </label>
+  <button class="btn-large teal" type="submit">Edit</button>
 </form>
+</div>

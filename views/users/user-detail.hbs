@@ -1,0 +1,122 @@
+<div class="container">
+  <div class="section">
+    <div class="row">
+      <div class="col l12">
+        <article
+          class="post-2320 post type-post status-publish format-standard has-post-thumbnail hentry category-downtown tag-mtlcafecrawl roaster-kittel metro-mcgill metro-place-des-arts moods-energetic purpose-social-meetups"
+          id="post-2320"
+        >
+          <div class="row">
+            <div class="col l8 s12">
+              <h2> Welcome!
+                <br> {{name}} {{currentUser.name}}</h2>
+              <img
+                width="450"
+                height="450"
+                src={{currentUser.image}}
+                class="single-photo responsive-img z-depth-3 wp-post-image"
+                sizes="(max-width: 400px) 100vw, 400px"
+              />
+
+                            {{! memento section }}
+              <div class="section">
+                <div class="row">
+                  <div class="col s12">
+                    <div class="section">
+                      <div class="col s12">
+                        <span calss="title"> Cities</span>
+                      </div>
+                    </div>
+                    {{! aqui va un each para muchos mementos  }}
+                    {{#if cities}}
+                      {{#each cities}}
+                        <div class="col s12 m4">
+                          <div class="card">
+                            <div class="card-image ">
+                              <a href="/city/{{_id}}/detail">
+                                <img 
+                                width="300" 
+                                height="200" 
+                                src={{image}} 
+                                alt={{name}} title={{name}} 
+                                 />    
+                                <span class="card-title">{{name}}</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      {{/each}}
+
+                    {{else}}
+                      <div class="col s12">
+                        <span calss="title">
+                          You don´t have any city yet</span>
+                      </div>
+                    {{/if}}
+
+                    {{! aqui termina el each }}
+                  </div>
+                </div>
+              </div>
+              {{! termina memento section }}
+
+            </div>
+            <div class="col l4 s12">
+              <div class="card-panel alcaramel" style="min-height: 640px;">
+                <h4>Your profile details 😁 </h4>
+                <hr />
+                <span class="detail-title"><i
+                    class="mdi-communication-location-on"
+                  ></i>Last Name: </span>
+                <span class="">{{lastName}} {{currentUser.lastName}}</span>
+                <hr />
+                <span class="detail-title"><i
+                    class="mdi-action-store"
+                  ></i>Username:  {{currentUser.username}}</span>
+                <hr />
+                <span class="detail-title"><i
+                    class="mdi-device-access-time"
+                  ></i>City:  {{currentUser.city}}</span>
+                <ul class="opening-hours">
+                    <hr />
+                <span class="detail-title"><i
+                    class="mdi-device-access-time"
+                  ></i>Age:  {{currentUser.age}}</span>
+                <ul class="opening-hours">
+                    <hr />
+                <span class="detail-title"><i
+                    class="mdi-device-access-time"
+                  ></i>Email:  {{currentUser.email}}</span>
+                <ul class="opening-hours">
+                    <hr />                       
+                  <a href="/city/new">
+                       <button
+                        class="btn-large teal"
+                        type="submit"
+                        name="action"
+                        value="suggests"
+                      >
+                        New city
+                      </button>
+                  </a>
+                  <br>
+                  <br>
+                   <a href="/auth/list/{{currentUser._id}}/edit">
+                       <button
+                        class="btn-large teal"
+                        type="submit"
+                        name="action"
+                        value="suggests"
+                      >
+                        Edit my profile
+                      </button>
+                  </a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+

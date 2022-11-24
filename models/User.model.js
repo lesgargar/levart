@@ -26,7 +26,7 @@ const userSchema = new Schema(
       trim: true,
     },
     age: {
-      type: Date,
+      type: Number,
       required: true,
       trim: true,
     },
@@ -40,6 +40,10 @@ const userSchema = new Schema(
       type: String,
       required: true,
       minLength: 8
+    },
+    image: {
+      type:String,
+      default: "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
     },
   },
   {
