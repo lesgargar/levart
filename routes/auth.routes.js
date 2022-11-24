@@ -144,6 +144,17 @@ router.get('/list', (req, res) => {
   .catch(err=>console.log(err));
 });
 
+// GET route to retrieve and display a specif user
+router.get('/list/user', (req, res) => {
+  const {_id} = req.session.currentUser
+  User.findById(_id)
+  .then((users)=>{
+    console.log("uno",users);
+   res.render('users/user-one', {User:users, currentUser:req.session.currentUser});      
+  })
+  .catch(err=>console.log(err));
+});
+
 //GET auth id AND EDIT
 router.get("/list/:_id/edit", async (req,res, next)=>{
   try{
