@@ -8,11 +8,12 @@
         >
           <div class="row">
             <div class="col l8 s12">
-              <h2> <i class="large material-icons prefix">account_circle</i>{{name}} {{currentUser.name}}</h2>
+              <h2> Welcome!
+                <br> {{name}} {{currentUser.name}}</h2>
               <img
                 width="450"
                 height="450"
-                src="/images/profile/profile.png"
+                src={{currentUser.image}}
                 class="single-photo responsive-img z-depth-3 wp-post-image"
                 sizes="(max-width: 400px) 100vw, 400px"
               />
@@ -62,7 +63,7 @@
             </div>
             <div class="col l4 s12">
               <div class="card-panel alcaramel" style="min-height: 640px;">
-                <h4><i class="large material-icons prefix">art_track</i>DETAILS USER</h4>
+                <h4>Your profile details 😁 </h4>
                 <hr />
                 <span class="detail-title"><i
                     class="mdi-communication-location-on"

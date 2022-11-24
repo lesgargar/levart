@@ -1,3 +1,4 @@
+<div class="form-size">
 <div class="container">
   {{#with city}}
 <div id="form">
@@ -12,13 +13,19 @@
       <input type="text" name="location" placeholder="where is it?" value="{{location}} "/>
     </label>
     <label>Description 
-      <input type="text" name="description" placeholder="where is it?" value="{{description}} "/>
+      <input type="text" name="description" placeholder="where is it?" value="{{description}}"/>
     </label>
       <label>Upload a photo
         <input type="file" name="image" />
       </label>
     
-    <button class="btn red darken-2" type="submit">Save changes</button>
+    <button
+        class="btn-large teal"
+        name="action"
+        value="suggests"
+        >
+        save changes
+    </button>
 
 
     {{#if errorMessage}}
@@ -26,5 +33,6 @@
     {{/if}}
   </form>
   {{/with}}
+</div>
 </div>
 </div>
