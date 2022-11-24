@@ -171,8 +171,9 @@ router.get("/list/:_id/edit", async (req,res, next)=>{
 //UPDATE USER POST
 router.post("/list/:_id/edit", async (req,res)=>{
   const {_id} = req.params
-  const dataU = await User.findByIdAndUpdate(_id, req.body)
-  res.redirect(`/auth/${_id}`);
+  const dataU = await User.findByIdAndUpdate(_id, req.body, {new:true})
+  req.session.currentUser = dataU
+  res.redirect(`/`);
 })
 
 //detail user after edit
