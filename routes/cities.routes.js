@@ -3,6 +3,8 @@ const router = express.Router();
 const City = require("../models/City.model");
 const Memento = require("../models/Memento.model")
 const Review = require("../models/Review.model")
+const fileUploader = require("../helpers/cloudinary")
+
 /* GET home page */
 router.get("/", (req, res, next) => {
   res.render("home", {currentUser:req.session.currentUser});
@@ -12,10 +14,14 @@ router.get("/new", (req, res, next) => {
   res.render("cities/createCity", {currentUser:req.session.currentUser});
 });
 
-router.post("/new", (req, res, next) => {
+router.post("/new", fileUploader.single('image'), (req, res, next) => {
   const { _id } = req.session.currentUser;
   const { name, location } = req.body;
-  City.create({ name, location, owner: _id })
+  const newObject = { name, location, owner: _id,}
+  if (req.file){
+    newObject["image"] = req.file.path
+  }
+  City.create( newObject)
     .then((city) => {
       //cambiar a la ruta del perfil
       res.redirect("/");
@@ -31,16 +37,21 @@ router.get("/:id/edit", (req, res, next) => {
       if (city == null) {
         return res.redirect("/city");
       }
-      console.log(city)
       res.render("cities/editCity" , {currentUser:req.session.currentUser, city});
     })
     .catch((err) => {
       res.redirect("/city");
     });
 });
-router.post("/:id/edit", (req, res, next) => {
+router.post("/:id/edit", fileUploader.single("image"), (req, res, next) => {
   const { id } = req.params;
   const { owner, ...restBody } = req.body;
+  
+  if (req.file){
+    console.log("hayq ue ve",req.file.path)
+    restBody["image"] = req.file.path
+  }
+  console.log(restBody)
   City.findByIdAndUpdate(id, restBody, { new: true })
     .then((city) => {
       res.redirect(`/city/${id}/detail`);
