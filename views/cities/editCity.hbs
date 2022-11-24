@@ -2,7 +2,7 @@
   {{#with city}}
 <div id="form">
   <h2>Edit City</h2>
-  <form action="/city/{{_id}}/edit" method="post">
+  <form action="/city/{{_id}}/edit" method="post" enctype="multipart/form-data">
 
     <label> Name
       <input type="text" name="name" placeholder="City's name" value="{{name}}" />
@@ -14,7 +14,9 @@
     <label>Description 
       <input type="text" name="description" placeholder="where is it?" value="{{description}} "/>
     </label>
-
+      <label>Upload a photo
+        <input type="file" name="image" />
+      </label>
     
     <button class="btn red darken-2" type="submit">Save changes</button>
 
