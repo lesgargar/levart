@@ -83,28 +83,31 @@
                 <h6>DETAILS</h6>
                 <hr />
 
-                <span class="detail-title"><i
-                    class="mdi-communication-location-on"
-                  ></i>location</span>
+                <span class="detail-title">
+                  <i class="mdi-communication-location-on"> </i>
+                  Location:</span>
+                  <br>
                 <span class="">{{city.location}}</span>
                 <hr />
 
-                <span class="detail-title"><i
-                    class="mdi-action-store"
-                  ></i>{{city.description}}</span>
+                <span class="detail-title">
+                  <i class="mdi-action-store"></i>
+                Description: </span>
+                <br>
+                <span>{{city.description}}</span>
                 <hr />
 
                 <span class="detail-title"><i
                     class="mdi-device-access-time"
                   ></i>
-                  Review</span>
+                  Reviews</span>
                 <ul class="opening-hours">
                     {{#if reviews}}
                       {{#each reviews}}
                       <li>{{review}}</li>
                       {{/each}}
                     {{else }}
-                      <li>Add new review</li>
+                      <li>No reviews yet</li>
                     {{/if}}
                   
 
@@ -124,13 +127,13 @@
                   <br>
                   <br>
                   <a target="_blank" href="/review/list">
-                    <button
+                    {{!-- <button
                         class="btn-large teal"
                         name="action"
                         value="suggests"
                       >
                       View my reviews
-                      </button>
+                      </button> --}}
                       </a>
                    
                   </span><hr />
@@ -177,7 +180,7 @@
                         name="action"
                         value="suggests"
                       >
-                        Submit
+                        Create memento
                       </button>
 
                     </div>

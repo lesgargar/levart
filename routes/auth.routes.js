@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const fileUploader = require("../helpers/cloudinary")
 
 // ℹ️ Handles password encryption
 const bcrypt = require("bcrypt");
@@ -16,7 +17,7 @@ const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
 // GET /auth/signup
-router.get("/signup", isLoggedOut, (req, res) => {
+router.get("/signup", isLoggedOut,(req, res) => {
   res.render("auth/signup");
 });
 
@@ -162,18 +163,26 @@ router.get("/list/:_id/edit", async (req,res, next)=>{
       const {_id} = req.params
       //1. Obtener los datos de DB (database)
       const data = await User.findById(_id);
-      res.render("/list/:_id/edit",data)
+      res.render("users/user-edit",data)
   }catch(err){
       res.redirect("/list")
   }
 })
 
 //UPDATE USER POST
-router.post("/list/:_id/edit", async (req,res)=>{
+router.post("/list/:_id/edit",fileUploader.single('image'), async (req,res)=>{
+  try{
   const {_id} = req.params
-  const dataU = await User.findByIdAndUpdate(_id, req.body, {new:true})
+  const {password, username, email, ...restBody} = req.body
+  if (req.file){
+    restBody["image"] = req.file.path
+  }
+  const dataU = await User.findByIdAndUpdate(_id, restBody, {new:true})
   req.session.currentUser = dataU
   res.redirect(`/`);
+}catch(err){
+
+}
 })
 
 //detail user after edit

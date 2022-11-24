@@ -67,3 +67,8 @@ align-items: center;
   padding: 10px;
   box-shadow: 5px 10px #888888;
 }
+
+.form-size{
+  height: 100vh;
+  width: 50vw;
+}
