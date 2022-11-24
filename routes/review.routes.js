@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const Review = require("../models/Review.model");
 const City = require("../models/City.model");
 
+
 // GET route to retrieve and display all the reviews
 router.get('/list', (req, res) => {
     //1. Traer los datos de la base de datos
@@ -26,6 +27,7 @@ router.get("/:idCity/create-review", (req, res) => {
 //POST /review/create
 router.post("/:idCity/create-review", async (req, res, next) => {
     try{
+  const {_id} = req.session.currentUser
         const {idCity} = req.params
         const { date, review } = req.body;
         const newReview = await Review.create({
@@ -34,10 +36,12 @@ router.post("/:idCity/create-review", async (req, res, next) => {
             ownerCity:idCity,
             review 
         })
-        Review.find()
-        .then((reviews)=>{
-        res.render('users/user-detail', {Review: reviews, currentUser:req.session.currentUser}); 
-        })
+        
+      res.redirect(`/city/${idCity}/detail`)
+        // Review.find()
+        // .then((reviews)=>{
+        // res.render('users/user-detail', {Review: reviews, currentUser:req.session.currentUser}); 
+        // })
     }catch(err){
         console.log(err);
     }
