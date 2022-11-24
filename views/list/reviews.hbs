@@ -1,0 +1,14 @@
+<h1>Reviews List</h1>
+
+{{#each Review}}
+    <div>
+        <h4>Owner: {{owner}}</h4>
+        <h4>Owner City: {{ownerCity}}</h4>
+        <h4>Date: {{date}}</h4>
+        <h4>Review: {{review}}</h4>
+        <a href="/review/list/{{_id}}/edit">Edit</a>
+        <form action="" method="post">
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+{{/each}}

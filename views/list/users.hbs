@@ -1,19 +1,16 @@
-<div class="details ">
-<h1 class="center-align">Users List</h1>
+<h1>Users List</h1>
+
 {{#each User}}
-    <div class="class="borderS"">
-        <div class="card">
+    <div>
         <h4>Name: {{name}}</h4>
         <h4>Last Name: {{lastName}}</h4>
         <h4>Username: {{username}}</h4>
         <h4>City: {{city}}</h4>
         <h4>Age: {{age}}</h4>
         <h4>Email: {{email}}</h4>
-        <a class="btn-large teal m20" href="/auth/list/{{_id}}/edit">Edit</a>
+        <a href="/auth/list/{{_id}}/edit">Edit</a>
         <form action="/auth/list/{{_id}}/delete" method="post">
-            <button class="btn-large teal m20" type="submit">Delete</button>
+            <button type="submit">Delete</button>
         </form>
-        </div>
     </div>
 {{/each}}
-</div>

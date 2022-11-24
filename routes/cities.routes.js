@@ -2,32 +2,25 @@ const express = require("express");
 const router = express.Router();
 const City = require("../models/City.model");
 const Memento = require("../models/Memento.model")
-const Review = require("../models/Review.model")
-const fileUploader = require("../helpers/cloudinary")
-
 /* GET home page */
 router.get("/", (req, res, next) => {
-  res.render("home", {currentUser:req.session.currentUser});
+  res.render("home");
 });
 
 router.get("/new", (req, res, next) => {
-  res.render("cities/createCity", {currentUser:req.session.currentUser});
+  res.render("cities/createCity");
 });
 
-router.post("/new", fileUploader.single('image'), (req, res, next) => {
+router.post("/new", (req, res, next) => {
   const { _id } = req.session.currentUser;
   const { name, location } = req.body;
-  const newObject = { name, location, owner: _id,}
-  if (req.file){
-    newObject["image"] = req.file.path
-  }
-  City.create( newObject)
+  City.create({ name, location, owner: _id })
     .then((city) => {
       //cambiar a la ruta del perfil
-      res.redirect("/");
+      res.redirect("/city");
     })
     .catch((err) => {
-      res.render("cities/createCity", {currentUser:req.session.currentUser});
+      res.render("cities/createCity");
     });
 });
 
@@ -37,27 +30,21 @@ router.get("/:id/edit", (req, res, next) => {
       if (city == null) {
         return res.redirect("/city");
       }
-      res.render("cities/editCity" , {currentUser:req.session.currentUser, city});
+      res.render("cities/editCity", city);
     })
     .catch((err) => {
       res.redirect("/city");
     });
 });
-router.post("/:id/edit", fileUploader.single("image"), (req, res, next) => {
+router.post("/:id/edit", (req, res, next) => {
   const { id } = req.params;
   const { owner, ...restBody } = req.body;
-  
-  if (req.file){
-    console.log("hayq ue ve",req.file.path)
-    restBody["image"] = req.file.path
-  }
-  console.log(restBody)
   City.findByIdAndUpdate(id, restBody, { new: true })
     .then((city) => {
-      res.redirect(`/city/${id}/detail`);
+      res.redirect("/city");
     })
     .catch((err) => {
-      res.render("cities/editCity", { _id: id, ...restBody, currentUser:req.session.currentUser });
+      res.render("cities/editCity", { _id: id, ...restBody });
     });
 });
 
@@ -71,8 +58,7 @@ router.get("/:id/detail", async (req, res, next) => {
     return res.redirect("/city");
   }
   const mementos = await Memento.find({ownerCity:id, owner:_id})
-  const reviews = await Review.find({ownerCity: id, owner:_id})
-      res.render("cities/cityDetail", {city, mementos, reviews, currentUser:req.session.currentUser})
+      res.render("cities/cityDetail", {city, mementos})
  }catch(err){
   res.redirect("/city");
  }
@@ -82,7 +68,7 @@ router.get("/:id/detail", async (req, res, next) => {
 router.get("/:id/delete", (req, res, next) => {
     City.findByIdAndDelete(req.params.id)
     .then((city) => {
-      res.redirect("/");
+      res.redirect("/city");
     })
     .catch((err) => {
       res.redirect("/city");

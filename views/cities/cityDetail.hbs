@@ -14,7 +14,7 @@
             <div class="col l8 s12">
 
               <h2>{{city.name}}</h2>
-                {{!-- down here the image  --}}
+
               <img
                 width="800"
                 height="600"
@@ -83,60 +83,31 @@
                 <h6>DETAILS</h6>
                 <hr />
 
-                <span class="detail-title">
-                  <i class="mdi-communication-location-on"> </i>
-                  Location:</span>
-                  <br>
+                <span class="detail-title"><i
+                    class="mdi-communication-location-on"
+                  ></i>location</span>
                 <span class="">{{city.location}}</span>
                 <hr />
 
-                <span class="detail-title">
-                  <i class="mdi-action-store"></i>
-                Description: </span>
-                <br>
-                <span>{{city.description}}</span>
+                <span class="detail-title"><i
+                    class="mdi-action-store"
+                  ></i>{{city.description}}</span>
                 <hr />
 
                 <span class="detail-title"><i
                     class="mdi-device-access-time"
                   ></i>
-                  Reviews</span>
+                  review</span>
                 <ul class="opening-hours">
-                    {{#if reviews}}
-                      {{#each reviews}}
-                      <li>{{review}}</li>
-                      {{/each}}
-                    {{else }}
-                      <li>No reviews yet</li>
-                    {{/if}}
-                  
+
+                  <li>aqui va un review</li>
 
                 </ul>
                 <span class="detail-title"><i
                     class="mdi-image-photo-camera"
                   ></i>
-                  <a href="/review/{{city._id}}/create-review">
-                  <button
-                        class="btn-large teal"
-                        name="action"
-                        value="suggests"
-                      >
-                      Add new review
-                      </button>
-                  </a>
-                  <br>
-                  <br>
-                  <a target="_blank" href="/review/list">
-                    {{!-- <button
-                        class="btn-large teal"
-                        name="action"
-                        value="suggests"
-                      >
-                      View my reviews
-                      </button> --}}
-                      </a>
-                   
-                  </span><hr />
+
+                  <a target="_blank" href="">view more ...</a></span><hr />
 
                 <span class="detail-title"><i class="mdi-maps-map"></i>
                   Add mementos</span>
@@ -180,38 +151,22 @@
                         name="action"
                         value="suggests"
                       >
-                        Create memento
+                        Submit
                       </button>
 
                     </div>
                   </div>
                 </form>
                 <hr>
-
-                <a href="/city/{{city._id}}/edit">
-                    <button
-                        class="btn-large teal"
-                        
-                        name="action"
-                        value="suggests"
-                      >
-                        Edit this city
-                      </button>
-                  </a>
-                  <br>
-                  <br>
                   <a href="/city/{{city._id}}/delete">
-                        <button
-                        class="btn-large teal"
-                        name="action"
-                        value="suggests"
-                      >
-                        delete this city
-                      </button>
+                       Delete this city
                   </a>
                   <br>
 
-                 
+                  <a href="/city/{{city._id}}/edit">
+                    Update this city
+                  
+                  </a>
 
               </div>
 
