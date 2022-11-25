@@ -16,8 +16,8 @@ router.get("/new", (req, res, next) => {
 
 router.post("/new", fileUploader.single('image'), (req, res, next) => {
   const { _id } = req.session.currentUser;
-  const { name, location } = req.body;
-  const newObject = { name, location, owner: _id,}
+  const { name, location, description  } = req.body;
+  const newObject = { name, location, owner: _id, description}
   if (req.file){
     newObject["image"] = req.file.path
   }
